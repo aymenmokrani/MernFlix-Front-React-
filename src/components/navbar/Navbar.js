@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import LeftMenu from "./LeftMenu";
 import RightMenu from "./RightMenu";
 import { MenuOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [visible, setVisible] = useState(false);
@@ -20,7 +21,9 @@ function Navbar() {
   return (
     <nav className="menuBar" css={styles}>
       <div className="logo">
-        <span>mernflix</span>
+        <Link to="/">
+          <span>mernflix</span>
+        </Link>
       </div>
       <div className="menuCon">
         <div className="lefMenu" style={{ display: !lg && "none" }}>
@@ -75,7 +78,6 @@ const styles = css`
   display: flex;
   align-items: center;
   padding: 0 20px;
-  position: fixed;
   z-index: 1;
   background-color: #fff;
   width: 100%;

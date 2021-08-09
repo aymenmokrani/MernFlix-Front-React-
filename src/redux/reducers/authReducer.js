@@ -1,8 +1,8 @@
 export default function (state = { isAuth: false }, action) {
   switch (action.type) {
-    case "SIGN_IN":
+    case "LOG_IN":
       return { ...state, isAuth: true };
-    case "SIGN_OUT":
+    case "LOG_OUT":
       return { ...state, isAuth: false };
 
     default:

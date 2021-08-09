@@ -5,7 +5,6 @@ import { createStore } from "redux";
 import allReducers from "./redux/reducers";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.css";
 
 const store = createStore(

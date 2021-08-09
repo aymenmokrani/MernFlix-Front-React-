@@ -9,7 +9,9 @@ import Content from "./components/content/Content";
 import MovieCarousel from "./components/MovieCarousel/MovieCarousel";
 import Navbar from "./components/navbar/Navbar";
 import { getGenres, getPopular } from "./helpers/api";
+import LoginPage from "./pages/login/LoginPage";
 import MovieDetails from "./pages/movieDetails/MovieDetails";
+import RegisterPage from "./pages/register/RegisterPage";
 import {
   getGenresAction,
   getPopularAction,
@@ -37,7 +39,13 @@ function App() {
               <Content />
             </div>
           </Route>
-          <Route path="/movie">
+          <Route path="/login">
+            <LoginPage />
+          </Route>
+          <Route path="/register">
+            <RegisterPage />
+          </Route>
+          <Route path="/movie/:id">
             <div className="container">
               <MovieDetails />
             </div>
@@ -49,9 +57,6 @@ function App() {
 }
 
 const styles = css`
-  .content {
-    padding: 57px 0 0 0;
-  }
   .container {
     padding: 0 20px;
     max-width: 1120px;

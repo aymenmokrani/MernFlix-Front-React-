@@ -14,10 +14,6 @@ function Content() {
   const popularMovies = useSelector((state) => state.moviesReducer.popular);
   const genres = useSelector((state) => state.moviesReducer.genres);
 
-  const consoleDetails = (id) => {
-    getMovie(id).then((res) => console.log(res));
-  };
-
   return (
     <div className="content" css={style}>
       <h1 className="title">Popular Now</h1>
@@ -36,10 +32,10 @@ function Content() {
                 />
               }
             >
-              <Card.Meta
-                title={
-                  <div>
-                    <Link to={`/movie/${element.id}`}>
+              <Link to={`/movie/${element.id}`}>
+                <Card.Meta
+                  title={
+                    <div>
                       <Tooltip title={element.original_title}>
                         <Title
                           level={4}
@@ -48,35 +44,34 @@ function Content() {
                             whiteSpace: "nowrap",
                             overflow: "hidden",
                           }}
-                          onClick={() => consoleDetails(element.id)}
                         >
                           {element.original_title}
                         </Title>
                       </Tooltip>
-                    </Link>
 
-                    <div style={{ display: "flex", flexWrap: "wrap" }}>
-                      {element.genre_ids.map((id, idx) => {
-                        return (
-                          <Tag
-                            color="blue"
-                            key={idx}
-                            style={{ marginBottom: 10 }}
-                          >
-                            {genres.find((el) => el.id === id)?.name}
-                          </Tag>
-                        );
-                      })}
+                      <div style={{ display: "flex", flexWrap: "wrap" }}>
+                        {element.genre_ids.map((id, idx) => {
+                          return (
+                            <Tag
+                              color="blue"
+                              key={idx}
+                              style={{ marginBottom: 10 }}
+                            >
+                              {genres.find((el) => el.id === id)?.name}
+                            </Tag>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
-                }
-                description={
-                  <div>
-                    <span>Release Year: </span>
-                    <b>{getReleaseDate(element.release_date)}</b>
-                  </div>
-                }
-              />
+                  }
+                  description={
+                    <div>
+                      <span>Release Year: </span>
+                      <b>{getReleaseDate(element.release_date)}</b>
+                    </div>
+                  }
+                />
+              </Link>
             </Card>
           </Col>
         ))}
@@ -85,6 +80,10 @@ function Content() {
   );
 }
 
-const style = css``;
+const style = css`
+  .title {
+    margin-top: 5vh;
+  }
+`;
 
 export default Content;
