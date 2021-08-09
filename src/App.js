@@ -2,8 +2,8 @@
 import { css, jsx } from "@emotion/react";
 
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Content from "./components/content/Content";
 import MovieCarousel from "./components/MovieCarousel/MovieCarousel";
@@ -18,6 +18,9 @@ import {
 } from "./redux/actions/moviesActions";
 
 function App() {
+  const isAuth = useSelector((state) => state.authReducer.isAuth);
+  console.log(isAuth);
+
   const dispatch = useDispatch();
   useEffect(() => {
     getPopular().then((res) => {
@@ -39,11 +42,11 @@ function App() {
               <Content />
             </div>
           </Route>
-          <Route path="/login">
-            <LoginPage />
+          <Route exact path="/login">
+            {!isAuth ? <LoginPage /> : <Redirect to={{ pathname: "/" }} />}
           </Route>
           <Route path="/register">
-            <RegisterPage />
+            {!isAuth ? <RegisterPage /> : <Redirect to={{ pathname: "/" }} />}
           </Route>
           <Route path="/movie/:id">
             <div className="container">

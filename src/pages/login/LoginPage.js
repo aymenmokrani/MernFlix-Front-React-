@@ -7,8 +7,11 @@ import { Link } from "react-router-dom";
 import { configs } from "../../configs";
 import axios from "axios";
 import { authenticate, isAuth } from "../../helpers/authToken";
+import { logIn } from "../../redux/actions/authActions";
+import { useDispatch } from "react-redux";
 
 function LoginPage() {
+  const dispatch = useDispatch();
   const onFinish = async (values) => {
     console.log("Received values of form: ", values);
 
@@ -24,6 +27,7 @@ function LoginPage() {
           });
           setTimeout(() => {
             // setLoggedIn(true); // Redux set auth to true
+            dispatch(logIn());
           }, 1500);
         } else {
           console.log("something went wrong, try to log in again");
