@@ -8,7 +8,7 @@ import RightMenu from "./RightMenu";
 import { MenuOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ isAuth }) {
   const [visible, setVisible] = useState(false);
   const { md, lg, sm } = useBreakpoint();
 
@@ -58,7 +58,7 @@ function Navbar() {
           onClose={closeDrawer}
         >
           <LeftMenu />
-          <RightMenu />
+          <RightMenu {...{ logged: "oui" }} />
           <Input.Search
             allowClear
             enterButton
@@ -74,7 +74,6 @@ function Navbar() {
 const styles = css`
   overflow: auto;
   box-shadow: 0 0 30px #f3f1f1;
-  border-bottom: solid 1px #e8e8e8;
   display: flex;
   align-items: center;
   padding: 0 20px;
@@ -92,7 +91,8 @@ const styles = css`
   }
   .menuCon {
     float: left;
-    width: calc(100% - 150px);
+    flex-grow: 1;
+    // width: calc(100% - 150px);
     display: flex;
     align-items: center;
     > div {
@@ -104,7 +104,7 @@ const styles = css`
     .ant-menu-item,
     .ant-menu-submenu,
     .ant-input-search {
-      padding: 5px 20px;
+      padding: 5px auto;
     }
 
     .leftMenu {

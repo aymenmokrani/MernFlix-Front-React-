@@ -33,7 +33,7 @@ function App() {
 
   return (
     <div className="App" css={styles}>
-      <Navbar />
+      <Navbar {...{ isAuth }} />
       <div className="content">
         <Switch>
           <Route exact path="/">
